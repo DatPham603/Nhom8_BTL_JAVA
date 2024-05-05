@@ -24,4 +24,14 @@ public class Connect {
         }
         return con;
     }
+         public static String testConnect() {
+        try{
+            con = Connect.getConnect();
+            
+            return "Ket noi thanh cong";
+        }
+        catch(Exception e) {
+            return "Ket noi that bai";
+        }
+    } 
 }
