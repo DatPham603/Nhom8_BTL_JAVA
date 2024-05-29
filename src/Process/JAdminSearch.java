@@ -672,8 +672,7 @@ public class JAdminSearch extends javax.swing.JFrame {
                 this.txtNgayMuon.setText(rs.getString("Ngay_muon"));
                 this.txtHanTra.setText(rs.getString("Han_tra"));
                 this.txtNgayTra.setText(rs.getString("Ngaytra"));
-                this.txtTienCoc.setText(rs.getString("TienDatCoc"));
-
+                this.txtTienCoc.setText(String.valueOf(rs.getInt("Tien_Dat_coc")));
             }
         }catch(Exception e) {
 
@@ -700,7 +699,7 @@ public class JAdminSearch extends javax.swing.JFrame {
         this.txtSachMuon.setText(null);
         this.txtNgayMuon.setText(null);
         this.txtHanTra.setText(null);
-
+        
     }//GEN-LAST:event_btNewPhieuActionPerformed
 
     private void tbKhachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKhachMouseClicked

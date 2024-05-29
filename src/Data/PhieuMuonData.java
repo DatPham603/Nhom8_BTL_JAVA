@@ -29,8 +29,8 @@ public class PhieuMuonData {
         try {
             ps = Connect.getConnect().prepareStatement(sql);
             ps.setString(1, p.getMaMuon());
-            ps.setString(2, p.getMaKhach());
-            ps.setString(3, p.getSach());
+            ps.setString(2, p.getSach());
+            ps.setString(3, p.getMaKhach());
             ps.setDate(4, p.getNgayMuon());
             ps.setDate(5, p.getHanTra());
             ps.setInt(6, p.getTienCoc());
@@ -41,11 +41,12 @@ public class PhieuMuonData {
             System.out.println(e);
         }
     }
+
     
     public boolean UpdatePhieu(PhieuMuon p) {
         try {
             ps = Connect.getConnect().prepareStatement("UPDATE PHIEU_MUON SET  Ma_Khach_hang = ?, Ma_Sach = ?,"
-                    + "Ngay_muon = ?, Han_tra = ?, TienDatCoc = ? where Ma_Phieu_muon = ?");
+                    + "Ngay_muon = ?, Han_tra = ?, Tien_Dat_coc = ? where Ma_Phieu_muon = ?");
             ps.setString(6, p.getMaMuon());
             ps.setString(1, p.getMaKhach());
             ps.setString(2, p.getSach());

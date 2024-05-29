@@ -795,7 +795,7 @@ public class JAdminUpdate extends javax.swing.JFrame {
                 this.txtSachMuon.setText(rs.getString("Ma_Sach"));
                 this.txtNgayMuon.setText(rs.getString("Ngay_muon"));
                 this.txtHanTra.setText(rs.getString("Han_tra"));
-
+                this.txtTienCoc.setText(String.valueOf(rs.getInt("Tien_Dat_coc")));
             }
         }catch(Exception e) {
 
