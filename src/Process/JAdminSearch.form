@@ -294,6 +294,9 @@
               </Layout>
               <SubComponents>
                 <Component class="javax.swing.JTextField" name="txtNguoiMuon">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNguoiMuonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtSachMuon">
                 </Component>
@@ -361,6 +364,9 @@
                   </Events>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtMaPhieuMuon">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMaPhieuMuonActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btNewPhieu">
                   <Properties>

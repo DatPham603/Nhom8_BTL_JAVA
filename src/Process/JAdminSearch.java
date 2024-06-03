@@ -176,6 +176,12 @@ public class JAdminSearch extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtNguoiMuon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNguoiMuonActionPerformed(evt);
+            }
+        });
+
         jLabel19.setText("Mã phiếu mượn");
 
         jLabel20.setText("Mã Khách Hàng");
@@ -208,6 +214,12 @@ public class JAdminSearch extends javax.swing.JFrame {
         btLookMuon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLookMuonActionPerformed(evt);
+            }
+        });
+
+        txtMaPhieuMuon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaPhieuMuonActionPerformed(evt);
             }
         });
 
@@ -674,7 +686,7 @@ public class JAdminSearch extends javax.swing.JFrame {
             String sql1 = "SELECT * FROM PHIEU_MUON where Ma_Phieu_muon='"+IDrow+"'";
             ResultSet rs = UpdateTable.ShowTextField(sql1);
             if(rs.next()) {
-//                this.txtMaPhieuMuon.setText(rs.getString("Ma_Phieu_muon"));
+                this.txtMaPhieuMuon.setText(rs.getString("Ma_Phieu_muon"));
                 this.txtNguoiMuon.setText(rs.getString("Ma_Khach_hang"));
                 this.txtSachMuon.setText(rs.getString("Ma_Sach"));
                 this.txtNgayMuon.setText(rs.getString("Ngay_muon"));
@@ -809,6 +821,14 @@ public class JAdminSearch extends javax.swing.JFrame {
     private void txtMaSach1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaSach1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaSach1ActionPerformed
+
+    private void txtMaPhieuMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaPhieuMuonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaPhieuMuonActionPerformed
+
+    private void txtNguoiMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNguoiMuonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNguoiMuonActionPerformed
 
     /**
      * @param args the command line arguments
