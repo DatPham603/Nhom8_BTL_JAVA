@@ -23,6 +23,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.lbConnect.setText(Connect.testConnect());
+        
         this.setLocation(300, 200);
     }
 

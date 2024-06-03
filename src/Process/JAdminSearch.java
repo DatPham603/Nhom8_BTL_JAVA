@@ -25,9 +25,11 @@ public class JAdminSearch extends javax.swing.JFrame {
      * Creates new form JAdminSearch
      */
     public JAdminSearch() {
-        this.setLocation(100, 10);
+//        this.setLocation(100, 10);
+        
         initComponents();
-        UpdateTable.LoadData(sqlSach, tbSach);
+         this.setLocationRelativeTo(null); 
+        UpdateTable.LoadData(sqlSach, tbSach1);
         UpdateTable.LoadData(sqlKhach, tbKhach);
         UpdateTable.LoadData(sqlPhieu, tbMuon);
     }
@@ -491,6 +493,12 @@ public class JAdminSearch extends javax.swing.JFrame {
 
         jLabel25.setText("Số lượng");
 
+        txtMaSach1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaSach1ActionPerformed(evt);
+            }
+        });
+
         btNewSach1.setText("Nhập mới");
         btNewSach1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -610,14 +618,14 @@ public class JAdminSearch extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(this.txtLookSach.getText().length() == 0) {
             String sql1 = "SELECT * from SACH ";
-            UpdateTable.LoadData(sql1, tbSach);
+            UpdateTable.LoadData(sql1, tbSach1);
         }
         else {
-            String sql1 = "SELECT * from SACH WHERE Ma_Sach like N'%"+this.txtLookSach.getText()+"%' "
-            + "or Ten_Sach like N'%"+this.txtLookSach.getText()+"%'"
-            + "or Ten_Tac_gia like N'%"+this.txtLookSach.getText()+"%'"
-            + "or Nha_Xb like N'%"+this.txtLookSach.getText()+"%'";
-            UpdateTable.LoadData(sql1, tbSach);
+            String sql1 = "SELECT * from SACH WHERE Ma_Sach like N'%"+this.txtLookSach1.getText()+"%' "
+            + "or Ten_Sach like N'%"+this.txtLookSach1.getText()+"%'"
+            + "or Ten_Tac_gia like N'%"+this.txtLookSach1.getText()+"%'"
+            + "or Nha_Xb like N'%"+this.txtLookSach1.getText()+"%'";
+            UpdateTable.LoadData(sql1, tbSach1);
         }
     }//GEN-LAST:event_btLookSachActionPerformed
 
@@ -634,17 +642,17 @@ public class JAdminSearch extends javax.swing.JFrame {
     private void tbSachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSachMouseClicked
         // TODO add your handling code here:
         try{
-            int row = this.tbSach.getSelectedRow();
-            String IDrow = (this.tbSach.getModel().getValueAt(row, 0)).toString();
+            int row = this.tbSach1.getSelectedRow();
+            String IDrow = (this.tbSach1.getModel().getValueAt(row, 0)).toString();
             String sql1 = "SELECT * FROM SACH where Ma_Sach='"+IDrow+"'";
             ResultSet rs = UpdateTable.ShowTextField(sql1);
             if(rs.next()) {
-                this.txtMaSach.setText(rs.getString("Ma_Sach"));
-                this.txtTenSach.setText(rs.getString("Ten_Sach"));
-                this.txtNhaXb.setText(rs.getString("Nha_Xb"));
-                this.txtTenTacGia.setText(rs.getString("Ten_Tac_gia"));
-                this.txtGia.setText((rs.getString("Gia_tien")));
-                this.txtSoLuong.setText(rs.getString("So_luong"));
+                this.txtMaSach1.setText(rs.getString("Ma_Sach"));
+                this.txtTenSach1.setText(rs.getString("Ten_Sach"));
+                this.txtNhaXb1.setText(rs.getString("Nha_Xb"));
+                this.txtTenTacGia1.setText(rs.getString("Ten_Tac_gia"));
+                this.txtGia1.setText((rs.getString("Gia_tien")));
+                this.txtSoLuong1.setText(rs.getString("So_luong"));
             }
         }catch(Exception e) {
 
@@ -666,7 +674,7 @@ public class JAdminSearch extends javax.swing.JFrame {
             String sql1 = "SELECT * FROM PHIEU_MUON where Ma_Phieu_muon='"+IDrow+"'";
             ResultSet rs = UpdateTable.ShowTextField(sql1);
             if(rs.next()) {
-                this.txtMaPhieuMuon.setText(rs.getString("Ma_Phieu_muon"));
+//                this.txtMaPhieuMuon.setText(rs.getString("Ma_Phieu_muon"));
                 this.txtNguoiMuon.setText(rs.getString("Ma_Khach_hang"));
                 this.txtSachMuon.setText(rs.getString("Ma_Sach"));
                 this.txtNgayMuon.setText(rs.getString("Ngay_muon"));
@@ -694,7 +702,7 @@ public class JAdminSearch extends javax.swing.JFrame {
 
     private void btNewPhieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewPhieuActionPerformed
         // TODO add your handling code here:
-        this.txtMaPhieuMuon.setText(null);
+//        this.txtMaPhieuMuon.setText(null);
         this.txtNguoiMuon.setText(null);
         this.txtSachMuon.setText(null);
         this.txtNgayMuon.setText(null);
@@ -749,17 +757,17 @@ public class JAdminSearch extends javax.swing.JFrame {
     private void tbSach1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSach1MouseClicked
         // TODO add your handling code here:
         try{
-            int row = this.tbSach.getSelectedRow();
-            String IDrow = (this.tbSach.getModel().getValueAt(row, 0)).toString();
+            int row = this.tbSach1.getSelectedRow();
+            String IDrow = (this.tbSach1.getModel().getValueAt(row, 0)).toString();
             String sql1 = "SELECT * FROM SACH where Ma_Sach='"+IDrow+"'";
             ResultSet rs = UpdateTable.ShowTextField(sql1);
             if(rs.next()) {
-                this.txtMaSach.setText(rs.getString("Ma_Sach"));
-                this.txtTenSach.setText(rs.getString("Ten_Sach"));
-                this.txtNhaXb.setText(rs.getString("Nha_Xb"));
-                this.txtTenTacGia.setText(rs.getString("Ten_Tac_gia"));
-                this.txtGia.setText((rs.getString("Gia_tien")));
-                this.txtSoLuong.setText(rs.getString("So_luong"));
+                this.txtMaSach1.setText(rs.getString("Ma_Sach"));
+                this.txtTenSach1.setText(rs.getString("Ten_Sach"));
+                this.txtNhaXb1.setText(rs.getString("Nha_Xb"));
+                this.txtTenTacGia1.setText(rs.getString("Ten_Tac_gia"));
+                this.txtGia1.setText((rs.getString("Gia_tien")));
+                this.txtSoLuong1.setText(rs.getString("So_luong"));
             }
         }catch(Exception e) {
 
@@ -768,27 +776,27 @@ public class JAdminSearch extends javax.swing.JFrame {
 
     private void btLookSach1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLookSach1ActionPerformed
         // TODO add your handling code here:
-        if(this.txtLookSach.getText().length() == 0) {
+        if(this.txtLookSach1.getText().length() == 0) {
             String sql1 = "SELECT * from SACH ";
-            UpdateTable.LoadData(sql1, tbSach);
+            UpdateTable.LoadData(sql1, tbSach1);
         }
         else {
-            String sql1 = "SELECT * from SACH WHERE Ma_Sach like N'%"+this.txtLookSach.getText()+"%' "
-            + "or Ten_Sach like N'%"+this.txtLookSach.getText()+"%'"
-            + "or Ten_Tac_gia like N'%"+this.txtLookSach.getText()+"%'"
-            + "or Nha_Xb like N'%"+this.txtLookSach.getText()+"%'";
-            UpdateTable.LoadData(sql1, tbSach);
+            String sql1 = "SELECT * from SACH WHERE Ma_Sach like N'%"+this.txtLookSach1.getText()+"%' "
+            + "or Ten_Sach like N'%"+this.txtLookSach1.getText()+"%'"
+            + "or Ten_Tac_gia like N'%"+this.txtLookSach1.getText()+"%'"
+            + "or Nha_Xb like N'%"+this.txtLookSach1.getText()+"%'";
+            UpdateTable.LoadData(sql1, tbSach1);
         }
     }//GEN-LAST:event_btLookSach1ActionPerformed
 
     private void btNewSach1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewSach1ActionPerformed
         // TODO add your handling code here:
-        this.txtGia.setText(null);
-        this.txtMaSach.setText(null);
-        this.txtNhaXb.setText(null);
-        this.txtTenSach.setText(null);
-        this.txtTenTacGia.setText(null);
-        this.txtSoLuong.setText(null);
+        this.txtGia1.setText(null);
+        this.txtMaSach1.setText(null);
+        this.txtNhaXb1.setText(null);
+        this.txtTenSach1.setText(null);
+        this.txtTenTacGia1.setText(null);
+        this.txtSoLuong1.setText(null);
     }//GEN-LAST:event_btNewSach1ActionPerformed
 
     private void btRet1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRet1ActionPerformed
@@ -797,6 +805,10 @@ public class JAdminSearch extends javax.swing.JFrame {
         t.setVisible(true);
         dispose();
     }//GEN-LAST:event_btRet1ActionPerformed
+
+    private void txtMaSach1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaSach1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaSach1ActionPerformed
 
     /**
      * @param args the command line arguments

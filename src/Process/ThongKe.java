@@ -35,6 +35,7 @@ public class ThongKe extends javax.swing.JFrame {
      */
     public ThongKe() {
         initComponents();
+        this.setLocationRelativeTo(null); 
         UpdateTable.LoadData(sql, tbPhieuQuaHan);
         try{
             String sql1 = "SELECT SUM(So_luong) as sach FROM SACH";
@@ -201,21 +202,27 @@ public class ThongKe extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        try {
-            JFileChooser jfc = new JFileChooser("Save File");
-            if (jfc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-                // String content = this.taBaoCao.getText();
-                jfc.setDialogTitle("Save File");
-                FileOutputStream fos = new FileOutputStream(jfc.getSelectedFile());
-                //   fos.write(content.getBytes());
-                fos.flush();
-                fos.close();
-                JOptionPane.showMessageDialog(null, "Lưu thành công");
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+         try {
+        // Tạo JFileChooser để lưu file
+        JFileChooser jfc = new JFileChooser();
+        jfc.setDialogTitle("Save File");
+        if (jfc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+            // Lấy nội dung từ JTextArea
+            String content = this.lbTongPhieuQuaHan.getText();
+            
+            // Mở FileOutputStream để ghi nội dung vào file được chọn
+            FileOutputStream fos = new FileOutputStream(jfc.getSelectedFile());
+            fos.write(content.getBytes());
+            fos.flush();
+            fos.close();
+            
+            // Thông báo lưu thành công
+            JOptionPane.showMessageDialog(null, "Lưu thành công");
         }
+    } catch (Exception e) {
+        // Thông báo lỗi nếu có
+        JOptionPane.showMessageDialog(null, e.getMessage());
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
