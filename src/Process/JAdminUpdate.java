@@ -9,25 +9,21 @@ import Data.KhachHangData;
 import Data.PhieuMuonData;
 import Data.SachData;
 import Object.KhachHang;
-import Object.NhaXb;
 import Object.PhieuMuon;
 import Object.Sach;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
 
 /**
  *
  * @author Admin
  */
 public class JAdminUpdate extends javax.swing.JFrame {
-     SachData sachdata = new SachData();
+
+    SachData sachdata = new SachData();
     KhachHangData khachhangdata = new KhachHangData();
     PhieuMuonData phieumuondata = new PhieuMuonData();
     public static PreparedStatement ps = null;
@@ -35,12 +31,13 @@ public class JAdminUpdate extends javax.swing.JFrame {
     public static String sqlSach = "SELECT * FROM SACH order by Ma_Sach asc";
     public static String sqlKhach = "SELECT * FROM KHACH_HANG order by Ma_Khach_hang asc";
     public static String sqlPhieu = "SELECT * FROM PHIEU_MUON order by Ma_Phieu_muon asc";
+
     /**
      * Creates new form JAdminUpdate
      */
     public JAdminUpdate() {
-        this.setLocation(100, 10);
         initComponents();
+        this.setLocationRelativeTo(null); 
         UpdateTable.LoadData(sqlSach, tbSach);
         UpdateTable.LoadData(sqlKhach, tbKhach);
         UpdateTable.LoadData(sqlPhieu, tbMuon);
@@ -48,23 +45,25 @@ public class JAdminUpdate extends javax.swing.JFrame {
         ProcessCrt2(true);
         ProcessCrt3(true);
     }
+
     public void ProcessCrt(boolean b) {
         this.btAddSach.setEnabled(b);
         this.btEditSach.setEnabled(b);
         this.btDelSach.setEnabled(b);
     }
-    
+
     public void ProcessCrt2(boolean b) {
         this.btAddKhach.setEnabled(b);
         this.btEditKhach.setEnabled(b);
         this.btDelKhach.setEnabled(b);
     }
-    
+
     public void ProcessCrt3(boolean b) {
         this.btAddPhieu.setEnabled(b);
         this.btEditPhieu.setEnabled(b);
         this.btDelPhieu.setEnabled(b);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -693,12 +692,12 @@ public class JAdminUpdate extends javax.swing.JFrame {
         // TODO add your handling code here:
         ProcessCrt(true);
         this.btAddSach.setEnabled(true);
-        try{
+        try {
             int row = this.tbSach.getSelectedRow();
             String IDrow = (this.tbSach.getModel().getValueAt(row, 0)).toString();
-            String sql1 = "SELECT * FROM SACH where Ma_Sach='"+IDrow+"'";
+            String sql1 = "SELECT * FROM SACH where Ma_Sach='" + IDrow + "'";
             ResultSet rs = UpdateTable.ShowTextField(sql1);
-            if(rs.next()) {
+            if (rs.next()) {
                 this.txtMaSach.setText(rs.getString("Ma_Sach"));
                 this.txtTenSach.setText(rs.getString("Ten_Sach"));
                 this.txtNhaXb.setText(rs.getString("Nha_Xb"));
@@ -706,33 +705,34 @@ public class JAdminUpdate extends javax.swing.JFrame {
                 this.txtGia.setText((rs.getString("Gia_tien")));
                 this.txtSoLuong.setText(rs.getString("So_luong"));
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
 
         }
     }//GEN-LAST:event_tbSachMouseClicked
 
     private void btLookSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLookSachActionPerformed
         // TODO add your handling code here:
-        if(this.txtLookSach.getText().length() == 0) {
+        if (this.txtLookSach.getText().length() == 0) {
             String sql1 = "SELECT * from SACH ";
             UpdateTable.LoadData(sql1, tbSach);
-        }
-        else {
-            String sql1 = "SELECT * from SACH WHERE Ma_Sach like N'%"+this.txtLookSach.getText()+"%' "
-            + "or Ten_Sach like N'%"+this.txtLookSach.getText()+"%'"
-            + "or Ten_Tac_gia like N'%"+this.txtLookSach.getText()+"%'"
-            + "or Nha_Xb like N'%"+this.txtLookSach.getText()+"%'";
+        } else {
+            String sql1 = "SELECT * from SACH WHERE Ma_Sach like N'%" + this.txtLookSach.getText() + "%' "
+                    + "or Ten_Sach like N'%" + this.txtLookSach.getText() + "%'"
+                    + "or Ten_Tac_gia like N'%" + this.txtLookSach.getText() + "%'"
+                    + "or Nha_Xb like N'%" + this.txtLookSach.getText() + "%'";
             UpdateTable.LoadData(sql1, tbSach);
         }
     }//GEN-LAST:event_btLookSachActionPerformed
 
     private void btAddSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddSachActionPerformed
         // TODO add your handling code here:
-        if (this.txtMaSach.getText().length()==0) JOptionPane.showMessageDialog(null, "Mã sách không thể bỏ trống", "thông báo", 2);
-        else if(this.txtMaSach.getText().length()>10) JOptionPane.showMessageDialog(null, "Mã sách không được lớn hơn 10 ký tự", "thông báo", 2);
-        else {
-            Sach s = new Sach(this.txtMaSach.getText(), this.txtTenSach.getText(), this.txtTenTacGia.getText(),this.txtNhaXb.getText(),
-                Integer.parseInt(this.txtGia.getText()),Integer.parseInt(this.txtSoLuong.getText()));
+        if (this.txtMaSach.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Mã sách không thể bỏ trống", "thông báo", 2);
+        } else if (this.txtMaSach.getText().length() > 10) {
+            JOptionPane.showMessageDialog(null, "Mã sách không được lớn hơn 10 ký tự", "thông báo", 2);
+        } else {
+            Sach s = new Sach(this.txtMaSach.getText(), this.txtTenSach.getText(), this.txtTenTacGia.getText(), this.txtNhaXb.getText(),
+                    Integer.parseInt(this.txtGia.getText()), Integer.parseInt(this.txtSoLuong.getText()));
             SachData.InsertSach(s);
             this.btLookSach.doClick();
         }
@@ -741,15 +741,18 @@ public class JAdminUpdate extends javax.swing.JFrame {
 
     private void btEditSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditSachActionPerformed
         // TODO add your handling code here:
-        if (this.txtMaSach.getText().length()==0) JOptionPane.showMessageDialog(null, "Mã sách không thể bỏ trống", "thông báo", 2);
-        else if(this.txtMaSach.getText().length()>10) JOptionPane.showMessageDialog(null, "Mã sách không được lớn hơn 10 ký tự", "thông báo", 2);
-        else {
-            Sach s = new Sach(this.txtMaSach.getText(), this.txtTenSach.getText(), this.txtTenTacGia.getText(),this.txtNhaXb.getText(),
-                Integer.parseInt(this.txtGia.getText()),Integer.parseInt(this.txtSoLuong.getText()));
-            if(sachdata.UpdateSach(s)) {
+        if (this.txtMaSach.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Mã sách không thể bỏ trống", "thông báo", 2);
+        } else if (this.txtMaSach.getText().length() > 10) {
+            JOptionPane.showMessageDialog(null, "Mã sách không được lớn hơn 10 ký tự", "thông báo", 2);
+        } else {
+            Sach s = new Sach(this.txtMaSach.getText(), this.txtTenSach.getText(), this.txtTenTacGia.getText(), this.txtNhaXb.getText(),
+                    Integer.parseInt(this.txtGia.getText()), Integer.parseInt(this.txtSoLuong.getText()));
+            if (sachdata.UpdateSach(s)) {
                 JOptionPane.showMessageDialog(null, "Bạn đã sửa thành công", "Thông báo", 1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Bạn không thể sửa mã sách", "Thông báo", 2);
             }
-            else JOptionPane.showMessageDialog(null, "Bạn không thể sửa mã sách", "Thông báo", 2);
             this.btLookSach.doClick();
         }
 
@@ -757,13 +760,16 @@ public class JAdminUpdate extends javax.swing.JFrame {
 
     private void btDelSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDelSachActionPerformed
         // TODO add your handling code here:
-        if (this.txtMaSach.getText().length()==0) JOptionPane.showMessageDialog(null, "Mã sách không thể bỏ trống", "thông báo", 2);
-        else if(this.txtMaSach.getText().length()>10) JOptionPane.showMessageDialog(null, "Mã sách không được lớn hơn 10 ký tự", "thông báo", 2);
+        if (this.txtMaSach.getText().length() == 0)
+            JOptionPane.showMessageDialog(null, "Mã sách không thể bỏ trống", "thông báo", 2);
+        else if (this.txtMaSach.getText().length() > 10)
+            JOptionPane.showMessageDialog(null, "Mã sách không được lớn hơn 10 ký tự", "thông báo", 2);
         else {
-            if(sachdata.DeleteSach(this.txtMaSach.getText())) {
+            if (sachdata.DeleteSach(this.txtMaSach.getText())) {
                 JOptionPane.showMessageDialog(null, "Bạn đã xóa thành công", "Thông báo", 1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Có lỗi xảy ra", "Thông báo", 2);
             }
-            else JOptionPane.showMessageDialog(null, "Có lỗi xảy ra", "Thông báo", 2);
             this.btLookSach.doClick();
         }
     }//GEN-LAST:event_btDelSachActionPerformed
@@ -784,12 +790,12 @@ public class JAdminUpdate extends javax.swing.JFrame {
         // TODO add your handling code here:
         ProcessCrt3(true);
         this.btAddPhieu.setEnabled(true);
-        try{
+        try {
             int row = this.tbMuon.getSelectedRow();
             String IDrow = (this.tbMuon.getModel().getValueAt(row, 0)).toString();
-            String sql1 = "SELECT * FROM PHIEU_MUON where Ma_Phieu_muon='"+IDrow+"'";
+            String sql1 = "SELECT * FROM PHIEU_MUON where Ma_Phieu_muon='" + IDrow + "'";
             ResultSet rs = UpdateTable.ShowTextField(sql1);
-            if(rs.next()) {
+            if (rs.next()) {
                 this.txtMaPhieuMuon.setText(rs.getString("Ma_Phieu_muon"));
                 this.txtNguoiMuon.setText(rs.getString("Ma_Khach_hang"));
                 this.txtSachMuon.setText(rs.getString("Ma_Sach"));
@@ -797,49 +803,51 @@ public class JAdminUpdate extends javax.swing.JFrame {
                 this.txtHanTra.setText(rs.getString("Han_tra"));
                 this.txtTienCoc.setText(String.valueOf(rs.getInt("Tien_Dat_coc")));
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
 
         }
     }//GEN-LAST:event_tbMuonMouseClicked
 
     private void btLookMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLookMuonActionPerformed
         // TODO add your handling code here:
-        if(this.txtLookPhieu.getText().length() == 0) {
+        if (this.txtLookPhieu.getText().length() == 0) {
             String sql1 = "SELECT * from PHIEU_MUON ";
             UpdateTable.LoadData(sql1, tbMuon);
-        }
-        else {
-            String sql1 = "SELECT * from PHIEU_MUON WHERE Ma_Phieu_muon like N'%"+this.txtLookPhieu.getText()+"%' "
-            + "or Ma_Khach_hang like N'%"+this.txtLookPhieu.getText()+"%' or Ma_Sach like N'%"+this.txtLookPhieu.getText()+"%'";
+        } else {
+            String sql1 = "SELECT * from PHIEU_MUON WHERE Ma_Phieu_muon like N'%" + this.txtLookPhieu.getText() + "%' "
+                    + "or Ma_Khach_hang like N'%" + this.txtLookPhieu.getText() + "%' or Ma_Sach like N'%" + this.txtLookPhieu.getText() + "%'";
             UpdateTable.LoadData(sql1, tbMuon);
         }
     }//GEN-LAST:event_btLookMuonActionPerformed
 
     private void btAddPhieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddPhieuActionPerformed
         // TODO add your handling code here
-        try{
-            if (this.txtMaPhieuMuon.getText().length()==0 )
-            JOptionPane.showMessageDialog(null, "Mã phiếu mượn không thể bỏ trống", "thông báo", 2);
-            else if(this.txtMaPhieuMuon.getText().length()>10) JOptionPane.showMessageDialog(null, "Mã phiếu mượn không được lớn hơn 10 ký tự", "thông báo", 2);
-            else {
-                PhieuMuon p = new PhieuMuon(this.txtMaPhieuMuon.getText(),this.txtNguoiMuon.getText(),this.txtSachMuon.getText(),
-                    Date.valueOf(this.txtNgayMuon.getText()),Date.valueOf(this.txtHanTra.getText()), Integer.parseInt(this.txtTienCoc.getText()));
+        try {
+            if (this.txtMaPhieuMuon.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Mã phiếu mượn không thể bỏ trống", "thông báo", 2);
+            } else if (this.txtMaPhieuMuon.getText().length() > 10) {
+                JOptionPane.showMessageDialog(null, "Mã phiếu mượn không được lớn hơn 10 ký tự", "thông báo", 2);
+            } else {
+                PhieuMuon p = new PhieuMuon(this.txtMaPhieuMuon.getText(), this.txtNguoiMuon.getText(), this.txtSachMuon.getText(),
+                        Date.valueOf(this.txtNgayMuon.getText()), Date.valueOf(this.txtHanTra.getText()), Integer.parseInt(this.txtTienCoc.getText()));
                 PhieuMuonData.InsertPhieu(p);
                 this.btLookMuon.doClick();
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Có lỗi xảy ra", "Thông báo", 2);
         }
 
         String sql = "UPDATE SACH SET So_luong = ? where Ma_Sach = ?";
-        String sql1 = "SELECT So_luong from SACH where Ma_Sach = '"+this.txtSachMuon.getText()+"'";
+        String sql1 = "SELECT So_luong from SACH where Ma_Sach = '" + this.txtSachMuon.getText() + "'";
         try {
             ps = Connect.getConnect().prepareStatement(sql);
             ResultSet rs = UpdateTable.ShowTextField(sql1);
-            ps.setString(2,this.txtSachMuon.getText());
+            ps.setString(2, this.txtSachMuon.getText());
             int count = 0;
-            if(rs.next()) count = rs.getInt("So_luong");
-            ps.setInt(1, count-1);
+            if (rs.next()) {
+                count = rs.getInt("So_luong");
+            }
+            ps.setInt(1, count - 1);
             ps.execute();
             this.btLookSach.doClick();
         } catch (Exception ex) {
@@ -849,28 +857,34 @@ public class JAdminUpdate extends javax.swing.JFrame {
 
     private void btEditPhieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditPhieuActionPerformed
         // TODO add your handling code here:
-        if (this.txtMaPhieuMuon.getText().length()==0) JOptionPane.showMessageDialog(null, "Mã phiếu mượn không thể bỏ trống", "thông báo", 2);
-        else if(this.txtMaPhieuMuon.getText().length()>10) JOptionPane.showMessageDialog(null, "Mã phiếu mượn không được lớn hơn 10 ký tự", "thông báo", 2);
+        if (this.txtMaPhieuMuon.getText().length() == 0)
+            JOptionPane.showMessageDialog(null, "Mã phiếu mượn không thể bỏ trống", "thông báo", 2);
+        else if (this.txtMaPhieuMuon.getText().length() > 10)
+            JOptionPane.showMessageDialog(null, "Mã phiếu mượn không được lớn hơn 10 ký tự", "thông báo", 2);
         else {
-            PhieuMuon p = new PhieuMuon(this.txtMaPhieuMuon.getText(),this.txtNguoiMuon.getText(),this.txtSachMuon.getText(),
-                Date.valueOf(this.txtNgayMuon.getText()),Date.valueOf(this.txtHanTra.getText()), Integer.parseInt(this.txtTienCoc.getText()));
-            if(phieumuondata.UpdatePhieu(p)) {
+            PhieuMuon p = new PhieuMuon(this.txtMaPhieuMuon.getText(), this.txtNguoiMuon.getText(), this.txtSachMuon.getText(),
+                    Date.valueOf(this.txtNgayMuon.getText()), Date.valueOf(this.txtHanTra.getText()), Integer.parseInt(this.txtTienCoc.getText()));
+            if (phieumuondata.UpdatePhieu(p)) {
                 JOptionPane.showMessageDialog(null, "Bạn đã sửa thành công", "Thông báo", 1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Có lỗi xảy ra", "Thông báo", 2);
             }
-            else JOptionPane.showMessageDialog(null, "Có lỗi xảy ra", "Thông báo", 2);
             this.btLookMuon.doClick();
         }
     }//GEN-LAST:event_btEditPhieuActionPerformed
 
     private void btDelPhieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDelPhieuActionPerformed
         // TODO add your handling code here:
-        if (this.txtMaPhieuMuon.getText().length()==0) JOptionPane.showMessageDialog(null, "Mã phiếu không thể bỏ trống", "thông báo", 2);
-        else if(this.txtMaPhieuMuon.getText().length()>10) JOptionPane.showMessageDialog(null, "Mã phiếu không được lớn hơn 10 ký tự", "thông báo", 2);
+        if (this.txtMaPhieuMuon.getText().length() == 0)
+            JOptionPane.showMessageDialog(null, "Mã phiếu không thể bỏ trống", "thông báo", 2);
+        else if (this.txtMaPhieuMuon.getText().length() > 10)
+            JOptionPane.showMessageDialog(null, "Mã phiếu không được lớn hơn 10 ký tự", "thông báo", 2);
         else {
-            if(phieumuondata.DeletePhieu(this.txtMaPhieuMuon.getText())) {
+            if (phieumuondata.DeletePhieu(this.txtMaPhieuMuon.getText())) {
                 JOptionPane.showMessageDialog(null, "Bạn đã xóa thành công", "Thông báo", 1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Có lỗi xảy ra", "Thông báo", 2);
             }
-            else JOptionPane.showMessageDialog(null, "Có lỗi xảy ra", "Thông báo", 2);
             this.btLookMuon.doClick();
         }
     }//GEN-LAST:event_btDelPhieuActionPerformed
@@ -891,7 +905,7 @@ public class JAdminUpdate extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         String sql = "UPDATE SACH SET So_luong = ? where Ma_Sach = ?";
-        String sql1 = "SELECT So_luong from SACH where Ma_Sach = '"+this.txtSachMuon.getText()+"'";
+        String sql1 = "SELECT So_luong from SACH where Ma_Sach = '" + this.txtSachMuon.getText() + "'";
         String sql2 = "UPDATE PHIEU_MUON SET NgayTra = (select GETDATE()) where Ma_Phieu_muon = ?";
 
         try {
@@ -904,25 +918,25 @@ public class JAdminUpdate extends javax.swing.JFrame {
 
             ps = Connect.getConnect().prepareStatement(sql);
             ResultSet rs = UpdateTable.ShowTextField(sql1);
-            try{
-                ps.setString(2,this.txtSachMuon.getText());
-            }
-            catch(Exception ex1){
-                JOptionPane.showMessageDialog(this,"Loi setString index 2"+ex1);
+            try {
+                ps.setString(2, this.txtSachMuon.getText());
+            } catch (Exception ex1) {
+                JOptionPane.showMessageDialog(this, "Loi setString index 2" + ex1);
             }
 
             int count = 0;
-            if(rs.next())
-            count = rs.getInt("So_luong");
+            if (rs.next()) {
+                count = rs.getInt("So_luong");
+            }
 
-            ps.setInt(1, count+1);
+            ps.setInt(1, count + 1);
 
             ps.execute();
             JOptionPane.showMessageDialog(this, "Tra sach thanh cong");
             this.btLookSach.doClick();
             this.btLookMuon.doClick();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this,"Co loi xay ra"+ex);
+            JOptionPane.showMessageDialog(this, "Co loi xay ra" + ex);
         }
     }//GEN-LAST:event_btTraActionPerformed
 
@@ -930,12 +944,12 @@ public class JAdminUpdate extends javax.swing.JFrame {
         // TODO add your handling code here:
         ProcessCrt2(true);
         this.btAddKhach.setEnabled(true);
-        try{
+        try {
             int row = this.tbKhach.getSelectedRow();
             String IDrow = (this.tbKhach.getModel().getValueAt(row, 0)).toString();
-            String sql1 = "SELECT * FROM KHACH_HANG where Ma_Khach_hang='"+IDrow+"'";
+            String sql1 = "SELECT * FROM KHACH_HANG where Ma_Khach_hang='" + IDrow + "'";
             ResultSet rs = UpdateTable.ShowTextField(sql1);
-            if(rs.next()) {
+            if (rs.next()) {
                 this.txtMaKhach.setText(rs.getString("Ma_Khach_hang"));
                 this.txtPassword.setText(rs.getString("Password"));
                 this.txtTenKhach.setText(rs.getString("Ten_Khach_hang"));
@@ -944,36 +958,37 @@ public class JAdminUpdate extends javax.swing.JFrame {
                 this.txtPhone.setText(rs.getString("Phone"));
 
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
 
         }
     }//GEN-LAST:event_tbKhachMouseClicked
 
     private void btLookKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLookKhachActionPerformed
         // TODO add your handling code here:
-        if(this.txtLookKhach.getText().length() == 0) {
+        if (this.txtLookKhach.getText().length() == 0) {
             String sql1 = "SELECT * from KHACH_HANG ";
             UpdateTable.LoadData(sql1, tbKhach);
-        }
-        else {
-            String sql1 = "SELECT * from KHACH_HANG WHERE Ma_Khach_hang like N'%"+this.txtLookKhach.getText()+"%' "
-            + "or Ten_Khach_hang like N'%"+this.txtLookKhach.getText()+"%' or Phone like '%"+this.txtLookKhach.getText()+"%'";
+        } else {
+            String sql1 = "SELECT * from KHACH_HANG WHERE Ma_Khach_hang like N'%" + this.txtLookKhach.getText() + "%' "
+                    + "or Ten_Khach_hang like N'%" + this.txtLookKhach.getText() + "%' or Phone like '%" + this.txtLookKhach.getText() + "%'";
             UpdateTable.LoadData(sql1, tbKhach);
         }
     }//GEN-LAST:event_btLookKhachActionPerformed
 
     private void btAddKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAddKhachActionPerformed
         // TODO add your handling code here:
-        try{
-            if (this.txtMaKhach.getText().length()==0) JOptionPane.showMessageDialog(null, "Mã khách hàng không thể bỏ trống", "thông báo", 2);
-            else if(this.txtMaKhach.getText().length()>10) JOptionPane.showMessageDialog(null, "Mã khách hàng không được lớn hơn 10 ký tự", "thông báo", 2);
-            else {
-                KhachHang s = new KhachHang(this.txtMaKhach.getText(), this.txtPassword.getText(), this.txtTenKhach.getText(),Date.valueOf(this.txtNgaySinh.getText()),
-                    this.txtDiaChi.getText(),this.txtPhone.getText());
+        try {
+            if (this.txtMaKhach.getText().length() == 0) {
+                JOptionPane.showMessageDialog(null, "Mã khách hàng không thể bỏ trống", "thông báo", 2);
+            } else if (this.txtMaKhach.getText().length() > 10) {
+                JOptionPane.showMessageDialog(null, "Mã khách hàng không được lớn hơn 10 ký tự", "thông báo", 2);
+            } else {
+                KhachHang s = new KhachHang(this.txtMaKhach.getText(), this.txtPassword.getText(), this.txtTenKhach.getText(), Date.valueOf(this.txtNgaySinh.getText()),
+                        this.txtDiaChi.getText(), this.txtPhone.getText());
                 KhachHangData.InsertKhachHang(s);
                 this.btLookKhach.doClick();
             }
-        }catch(Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Có lỗi xảy ra", "Thông báo", 2);
         }
 
@@ -981,28 +996,34 @@ public class JAdminUpdate extends javax.swing.JFrame {
 
     private void btEditKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditKhachActionPerformed
         // TODO add your handling code here:
-        if (this.txtMaKhach.getText().length()==0) JOptionPane.showMessageDialog(null, "Mã khách hàng không thể bỏ trống", "thông báo", 2);
-        else if(this.txtMaKhach.getText().length()>10) JOptionPane.showMessageDialog(null, "Mã khách hàng không được lớn hơn 10 ký tự", "thông báo", 2);
+        if (this.txtMaKhach.getText().length() == 0)
+            JOptionPane.showMessageDialog(null, "Mã khách hàng không thể bỏ trống", "thông báo", 2);
+        else if (this.txtMaKhach.getText().length() > 10)
+            JOptionPane.showMessageDialog(null, "Mã khách hàng không được lớn hơn 10 ký tự", "thông báo", 2);
         else {
-            KhachHang s = new KhachHang(this.txtMaKhach.getText(), this.txtPassword.getText(), this.txtTenKhach.getText(),Date.valueOf(this.txtNgaySinh.getText()),
-                this.txtDiaChi.getText(),this.txtPhone.getText());
-            if(khachhangdata.UpdateKhachHang(s)) {
+            KhachHang s = new KhachHang(this.txtMaKhach.getText(), this.txtPassword.getText(), this.txtTenKhach.getText(), Date.valueOf(this.txtNgaySinh.getText()),
+                    this.txtDiaChi.getText(), this.txtPhone.getText());
+            if (khachhangdata.UpdateKhachHang(s)) {
                 JOptionPane.showMessageDialog(null, "Bạn đã sửa thành công", "Thông báo", 1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Có lỗi xảy ra", "Thông báo", 2);
             }
-            else JOptionPane.showMessageDialog(null, "Có lỗi xảy ra", "Thông báo", 2);
             this.btLookKhach.doClick();
         }
     }//GEN-LAST:event_btEditKhachActionPerformed
 
     private void btDelKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDelKhachActionPerformed
         // TODO add your handling code here:
-        if (this.txtMaKhach.getText().length()==0) JOptionPane.showMessageDialog(null, "Mã sách không thể bỏ trống", "thông báo", 2);
-        else if(this.txtMaKhach.getText().length()>10) JOptionPane.showMessageDialog(null, "Mã sách không được lớn hơn 10 ký tự", "thông báo", 2);
+        if (this.txtMaKhach.getText().length() == 0)
+            JOptionPane.showMessageDialog(null, "Mã sách không thể bỏ trống", "thông báo", 2);
+        else if (this.txtMaKhach.getText().length() > 10)
+            JOptionPane.showMessageDialog(null, "Mã sách không được lớn hơn 10 ký tự", "thông báo", 2);
         else {
-            if(khachhangdata.DeleteKhachHang(this.txtMaKhach.getText())) {
+            if (khachhangdata.DeleteKhachHang(this.txtMaKhach.getText())) {
                 JOptionPane.showMessageDialog(null, "Bạn đã xóa thành công", "Thông báo", 1);
+            } else {
+                JOptionPane.showMessageDialog(null, "Có lỗi xảy ra", "Thông báo", 2);
             }
-            else JOptionPane.showMessageDialog(null, "Có lỗi xảy ra", "Thông báo", 2);
             this.btLookKhach.doClick();
         }
     }//GEN-LAST:event_btDelKhachActionPerformed

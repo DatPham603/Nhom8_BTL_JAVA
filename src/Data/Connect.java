@@ -26,8 +26,7 @@ public class Connect {
     }
          public static String testConnect() {
         try{
-            con = Connect.getConnect();
-            
+            con = Connect.getConnect();  
             return "Ket noi thanh cong";
         }
         catch(Exception e) {

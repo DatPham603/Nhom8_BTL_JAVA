@@ -37,7 +37,7 @@ public class SachData {
             ps.execute();
             JOptionPane.showMessageDialog(null, "Đã thêm sách thành công!" , "Thông báo", 1);
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Sach không được thêm" , "Thông báo", 1);
+            JOptionPane.showMessageDialog(null, "Sách không được thêm" , "Thông báo", 1);
         }
     }
     

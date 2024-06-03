@@ -6,8 +6,7 @@ package Data;
 import Object.Admin;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
+
 /**
  *
  * @author Admin
@@ -15,29 +14,48 @@ import java.util.List;
 public class AdminData {
     public static PreparedStatement ps;
     public static ResultSet rs;
-    public List<Admin> getAll(){
-        List<Admin> list = new ArrayList<>();
-        String sql = "SELECT * FROM QUAN_TRI";
-        try{
-           ps = Connect.getConnect().prepareStatement(sql);
-           rs = ps.executeQuery();
-           while (rs.next()) {
-            Admin admin = new Admin();
-            admin.setMaAdmin(rs.getString("Ma_Admin"));
-            admin.setPassword(rs.getString("Password"));
-            // Thêm admin vào danh sách
-            list.add(admin);
+    public Admin dangNhap(String maAdmin , String password ){
+          Admin ad = null;
+          try{
+            ps = Connect.getConnect().prepareStatement("SELECT * FROM QUAN_TRI where Ma_Admin = ? and Password=?");
+            ps.setString(1, maAdmin);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            while(rs.next()) {
+                ad = new Admin();
+            }
         }
-        }catch(Exception e){
-            System.out.println(e);
+        catch(Exception e) {
+            return ad = null;
         }
-        return list;
+        return ad;
     }
-    public static void main(String[] args) {
-        AdminData a = new AdminData();
-        List<Admin> list = a.getAll();
-         for (Admin admin : list) {
-        System.out.println("MaAdmin: " + admin.getMaAdmin() + ", Password: " + admin.getPassword());
+    public static ResultSet showTextfield(String sql) {
+        try {
+            ps = Connect.getConnect().prepareStatement(sql);
+            return ps.executeQuery();
+        } catch (Exception e) {
+            return null;
+        }
+        
     }
+    public boolean UpdateAdmin(Admin ad) {
+        try {
+            ps = Connect.getConnect().prepareStatement("UPDATE QUAN_TRI SET Password = ? where Ma_Admin = ?");
+            ps.setString(2, ad.getMaAdmin());
+            ps.setString(1, ad.getPassword());
+            return ps.executeUpdate() >0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    public boolean DeleteAdmin(String maAd) {
+        try {
+            ps = Connect.getConnect().prepareStatement("DELETE FROM QUAN_TRI WHERE Ma_Admin = ?");
+            ps.setString(1, maAd);
+            return ps.executeUpdate() >0;
+        } catch(Exception e) {
+            return false;
+        }
     }
 }
