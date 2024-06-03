@@ -79,11 +79,11 @@ public class JAdminSearch extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         btLookMuon = new javax.swing.JButton();
         txtMaPhieuMuon = new javax.swing.JTextField();
-        btNewPhieu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         txtNgayTra = new javax.swing.JTextField();
         txtTienCoc = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         txtPassword = new javax.swing.JTextField();
@@ -102,7 +102,7 @@ public class JAdminSearch extends javax.swing.JFrame {
         btLookKhach = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         txtMaKhach = new javax.swing.JTextField();
-        btNewKhach = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         txtTenSach1 = new javax.swing.JTextField();
         txtTenTacGia1 = new javax.swing.JTextField();
@@ -120,7 +120,7 @@ public class JAdminSearch extends javax.swing.JFrame {
         btLookSach1 = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
         txtMaSach1 = new javax.swing.JTextField();
-        btNewSach1 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         btRet1 = new javax.swing.JButton();
 
         btLookSach.setText("Tìm kiếm");
@@ -223,16 +223,16 @@ public class JAdminSearch extends javax.swing.JFrame {
             }
         });
 
-        btNewPhieu.setText("Nhập mới");
-        btNewPhieu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNewPhieuActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Ngày trả");
 
         jLabel14.setText("Tiền đặt cọc");
+
+        jButton3.setText("Hiển thị danh sách");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -240,7 +240,7 @@ public class JAdminSearch extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel6Layout.createSequentialGroup()
@@ -255,7 +255,7 @@ public class JAdminSearch extends javax.swing.JFrame {
                                     .addComponent(txtNguoiMuon)
                                     .addComponent(txtSachMuon)
                                     .addComponent(txtTienCoc))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
                                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -264,14 +264,17 @@ public class JAdminSearch extends javax.swing.JFrame {
                                 .addGap(182, 182, 182)
                                 .addComponent(btLookMuon)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtLookPhieu, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)))
+                                .addComponent(txtLookPhieu)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNgayMuon, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                             .addComponent(txtHanTra)
-                            .addComponent(btNewPhieu)
                             .addComponent(txtNgayTra))))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(0, 392, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(347, 347, 347))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,9 +282,10 @@ public class JAdminSearch extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLookPhieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btLookMuon)
-                    .addComponent(btNewPhieu))
-                .addGap(93, 93, 93)
+                    .addComponent(btLookMuon))
+                .addGap(37, 37, 37)
+                .addComponent(jButton3)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(jLabel22)
@@ -315,16 +319,15 @@ public class JAdminSearch extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 854, Short.MAX_VALUE)
+            .addGap(0, 877, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addContainerGap()
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 635, Short.MAX_VALUE)
+            .addGap(0, 632, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,13 +373,6 @@ public class JAdminSearch extends javax.swing.JFrame {
 
         jLabel13.setText("Số điện thoại");
 
-        btNewKhach.setText("Nhập mới");
-        btNewKhach.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNewKhachActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -409,8 +405,7 @@ public class JAdminSearch extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNgaySinh, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                             .addComponent(txtDiaChi)
-                            .addComponent(txtPhone)
-                            .addComponent(btNewKhach)))
+                            .addComponent(txtPhone)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -420,8 +415,7 @@ public class JAdminSearch extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLookKhach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btLookKhach)
-                    .addComponent(btNewKhach))
+                    .addComponent(btLookKhach))
                 .addGap(93, 93, 93)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -445,11 +439,21 @@ public class JAdminSearch extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
+        jButton5.setText("Hiển thị danh sách");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 854, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(385, Short.MAX_VALUE)
+                .addComponent(jButton5)
+                .addGap(360, 360, 360))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -458,7 +462,10 @@ public class JAdminSearch extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 623, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(jButton5)
+                .addContainerGap(454, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -511,10 +518,10 @@ public class JAdminSearch extends javax.swing.JFrame {
             }
         });
 
-        btNewSach1.setText("Nhập mới");
-        btNewSach1.addActionListener(new java.awt.event.ActionListener() {
+        jButton6.setText("Hiển thị  danh sách");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btNewSach1ActionPerformed(evt);
+                jButton6ActionPerformed(evt);
             }
         });
 
@@ -546,15 +553,18 @@ public class JAdminSearch extends javax.swing.JFrame {
                                 .addGap(182, 182, 182)
                                 .addComponent(btLookSach1)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtLookSach1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)))
+                                .addComponent(txtLookSach1, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNhaXb1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)
                             .addComponent(txtGia1)
-                            .addComponent(txtSoLuong1)
-                            .addComponent(btNewSach1)))
+                            .addComponent(txtSoLuong1)))
                     .addComponent(jScrollPane3))
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(378, 378, 378)
+                .addComponent(jButton6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -562,9 +572,10 @@ public class JAdminSearch extends javax.swing.JFrame {
                 .addGap(64, 64, 64)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLookSach1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btLookSach1)
-                    .addComponent(btNewSach1))
-                .addGap(93, 93, 93)
+                    .addComponent(btLookSach1))
+                .addGap(60, 60, 60)
+                .addComponent(jButton6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jLabel18)
@@ -600,8 +611,8 @@ public class JAdminSearch extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(783, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(806, Short.MAX_VALUE)
                 .addComponent(btRet1)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -712,16 +723,6 @@ public class JAdminSearch extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btLookMuonActionPerformed
 
-    private void btNewPhieuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewPhieuActionPerformed
-        // TODO add your handling code here:
-//        this.txtMaPhieuMuon.setText(null);
-        this.txtNguoiMuon.setText(null);
-        this.txtSachMuon.setText(null);
-        this.txtNgayMuon.setText(null);
-        this.txtHanTra.setText(null);
-        
-    }//GEN-LAST:event_btNewPhieuActionPerformed
-
     private void tbKhachMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKhachMouseClicked
         // TODO add your handling code here:
         try{
@@ -755,16 +756,6 @@ public class JAdminSearch extends javax.swing.JFrame {
             UpdateTable.LoadData(sql1, tbKhach);
         }
     }//GEN-LAST:event_btLookKhachActionPerformed
-
-    private void btNewKhachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewKhachActionPerformed
-        // TODO add your handling code here:
-        this.txtMaKhach.setText(null);
-        this.txtPassword.setText(null);
-        this.txtTenKhach.setText(null);
-        this.txtDiaChi.setText(null);
-        this.txtNgaySinh.setText(null);
-        this.txtPhone.setText(null);
-    }//GEN-LAST:event_btNewKhachActionPerformed
 
     private void tbSach1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSach1MouseClicked
         // TODO add your handling code here:
@@ -801,16 +792,6 @@ public class JAdminSearch extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btLookSach1ActionPerformed
 
-    private void btNewSach1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNewSach1ActionPerformed
-        // TODO add your handling code here:
-        this.txtGia1.setText(null);
-        this.txtMaSach1.setText(null);
-        this.txtNhaXb1.setText(null);
-        this.txtTenSach1.setText(null);
-        this.txtTenTacGia1.setText(null);
-        this.txtSoLuong1.setText(null);
-    }//GEN-LAST:event_btNewSach1ActionPerformed
-
     private void btRet1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRet1ActionPerformed
         // TODO add your handling code here:
         test t = new test();
@@ -829,6 +810,21 @@ public class JAdminSearch extends javax.swing.JFrame {
     private void txtNguoiMuonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNguoiMuonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNguoiMuonActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        UpdateTable.LoadData(sqlPhieu, tbMuon);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        UpdateTable.LoadData(sqlKhach, tbKhach);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        UpdateTable.LoadData(sqlSach, tbSach1);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -870,12 +866,12 @@ public class JAdminSearch extends javax.swing.JFrame {
     private javax.swing.JButton btLookMuon;
     private javax.swing.JButton btLookSach;
     private javax.swing.JButton btLookSach1;
-    private javax.swing.JButton btNewKhach;
-    private javax.swing.JButton btNewPhieu;
     private javax.swing.JButton btNewSach;
-    private javax.swing.JButton btNewSach1;
     private javax.swing.JButton btRet;
     private javax.swing.JButton btRet1;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
